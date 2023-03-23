@@ -12,6 +12,6 @@ namespace TEMPLATES
     template<>
     std::string func(const std::string& x);
 }
-#include "templatesimpl.cpp"
+#include "templates.tcc"
 
 #endif
