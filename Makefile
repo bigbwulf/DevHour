@@ -7,3 +7,4 @@ main.o: smartptrs.hpp templates.hpp lambdas.hpp templates.tcc
 
 clean:
 	rm -rf main
+	rm -rf *.o
