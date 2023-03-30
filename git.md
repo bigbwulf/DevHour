@@ -6,6 +6,7 @@
 * Git is the undisputed king
 * Created by Linus Torvalds to host the Linux Kernel, designed to be used by a Unix-like command line
 * Git is complex and has a steep learning curve, but we can still be productive with a relatively small set of commands
+
 ![Haha xkcd](https://imgs.xkcd.com/comics/git.png)
 
 ### config 
@@ -72,6 +73,7 @@ Changes to be committed:
 ```
 
 Finally to commit, we use ```git commit``` to commit to the HEAD (but not the remote repository)
+[Commit](https://onlywei.github.io/explain-git-with-d3/#commit) creates a new snapshot of the index and moves the HEAD pointer
 
 ```bash
 $ git commit -m "Demostrating Commit"
@@ -102,6 +104,28 @@ index 2e2e3df..5362b5a 100644
  
  * if you want to see the difference between staged changes and previous version of the repo, use ```git diff --staged```
  
+ ### branching
+
+[Branches](https://onlywei.github.io/explain-git-with-d3/#branch) are used to develop features isolated from each other
+
+![Branches](https://rogerdudler.github.io/git-guide/img/branches.png)
+
+Create a new branch and switch it it:
+
+``` bash
+$ git checkout -b newBranch
+
+# switch back to main
+$ git checkout main
+
+# delete the branch
+git branch -d newBranch
+
+# push the branch to a remote repo
+$ git push origin <branch>
+```
+
+ 
 ### remote repository
 
 We create a working copy of remote repository by running
@@ -121,32 +145,6 @@ to view your remote repos, use:
 $ git remote -v
 ```
 
-you can now push your local commits to the remote repo
-
-``` bash
-git push <name> <branch>
-```
-
-### branching
-
-Branches are used to develop features isolated from each other
-
-![Branches](https://rogerdudler.github.io/git-guide/img/branches.png)
-
-Create a new branch and switch it it:
-
-``` bash
-$ git checkout -b newBranch
-
-# switch back to main
-$ git checkout main
-
-# delete the branch
-git branch -d newBranch
-
-# push the branch to a remote repo
-$ git push origin <branch>
-```
 
 ### update and merge
 To update your local repository to the newest commit:
@@ -155,7 +153,7 @@ To update your local repository to the newest commit:
 $ git pull
 ```
 
-This *fetches* (downloads) and *merges* your current HEAD, while the command
+This [*fetches*](https://onlywei.github.io/explain-git-with-d3/#fetch) (updates remote tracking branches) and [*merges*](https://onlywei.github.io/explain-git-with-d3/#merge) your current HEAD, while the command
 
 ```bash
 $ git merge <branch>
@@ -169,9 +167,33 @@ Mark files as merged with:
 git add <filename>
 ```
 
+### push
+[git push](https://onlywei.github.io/explain-git-with-d3/#push) will send  commits on your local branch that the origin does not have. All pushes must cause a fast-forward merge. 
+
+``` bash
+git push <name> <branch>
+```
+
 ### replace local changes
 
-To replace changes in your working tree (working directory): 
+To replace changes in your working tree (working directory) with the last content in HEAD: 
 
 ```bash
 $ git checkout -- <filename>
+```
+
+If you want to drop all your local changes and commits, use [reset](https://onlywei.github.io/explain-git-with-d3/#reset): 
+
+```bash
+$ git fetch origin
+$ git reset --hard origin/main
+```
+
+### references and further reading (in order of complexity)
+
+https://rogerdudler.github.io/git-guide/
+
+https://practical-neuroimaging.github.io/git_parable.html
+
+https://matthew-brett.github.io/curious-git/
+
