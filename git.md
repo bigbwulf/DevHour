@@ -9,7 +9,7 @@
 ![Haha xkcd](https://imgs.xkcd.com/comics/git.png)
 
 ### config 
-* Set up your commit data and utilities
+Set up your commit data and utilities
 
 ```bash
 $ git config --global user.name "ajb"
@@ -31,16 +31,16 @@ $ git init
 ```
 
 ### workflow
-* There are three trees in git:
+There are three trees in git:
   * Working Directory - the actual files
   * Index - staging areas
   * HEAD - points to the last commit
 ![workflow](https://rogerdudler.github.io/git-guide/img/trees.png)
 
-* Once we add a file, we can use ```git status``` to see what's going on 
+Once we add a file, we can use ```git status``` to see what's going on 
 
 ```bash
-ajb@pop-os ~/c/c/MongooseBrownBags (main)> git status
+$ git status
 On branch main
 Your branch is up to date with 'origin/main'.
 
@@ -57,11 +57,11 @@ no changes added to commit (use "git add" and/or "git commit -a")
 
 ```
 
-* We can propose changes (add to index) using ```git add```
+We can propose changes (add to index) using ```git add```
 
 ``` bash
-ajb@pop-os ~/c/c/MongooseBrownBags (main)> git add -A
-ajb@pop-os ~/c/c/MongooseBrownBags (main)> git status
+$ git add -A
+$ git status
 On branch main
 Your branch is up to date with 'origin/main'.
 
@@ -71,4 +71,107 @@ Changes to be committed:
 	new file:   git.md
 ```
 
+Finally to commit, we use ```git commit``` to commit to the HEAD (but not the remote repository)
 
+```bash
+$ git commit -m "Demostrating Commit"
+[main f45b988] Demostrating Commit
+ 4 files changed, 152 insertions(+)
+```
+
+if you misspell something like an idiot, use:
+
+``` bash
+$ git commit --amend -m "Demonstrating Commit"
+```
+
+To view the diff between between last commit and unstaged changes, use ```git diff```
+
+``` bash
+> git diff
+diff --git a/git.md b/git.md
+index 2e2e3df..5362b5a 100644
+--- a/git.md
++++ b/git.md
+@@ -85,4 +85,5 @@ $ git commit -m "Demostrating Commit"
+ $ git commit --amend -m "Demonstrating Commit"
+ 
+ +* To view the diff between between last commit and unstaged changes,  use git diff
+
+ ```
+ 
+ * if you want to see the difference between staged changes and previous version of the repo, use ```git diff --staged```
+ 
+### remote repository
+
+We create a working copy of remote repository by running
+
+``` bash
+> git clone /path/to/repository/
+```
+
+if you have not cloned a repo and want to connect your local repo to a remote, add it with:
+``` bash
+git remote add <name> <url>
+```
+
+to view your remote repos, use:
+
+``` bash
+$ git remote -v
+```
+
+you can now push your local commits to the remote repo
+
+``` bash
+git push <name> <branch>
+```
+
+### branching
+
+Branches are used to develop features isolated from each other
+
+![Branches](https://rogerdudler.github.io/git-guide/img/branches.png)
+
+Create a new branch and switch it it:
+
+``` bash
+$ git checkout -b newBranch
+
+# switch back to main
+$ git checkout main
+
+# delete the branch
+git branch -d newBranch
+
+# push the branch to a remote repo
+$ git push origin <branch>
+```
+
+### update and merge
+To update your local repository to the newest commit:
+
+```bash
+$ git pull
+```
+
+This *fetches* (downloads) and *merges* your current HEAD, while the command
+
+```bash
+$ git merge <branch>
+```
+
+will merge another branch into your active branch. Both are not always possible and may result in merge conflicts. These conflicts must be resolved by editing the source files. 
+
+Mark files as merged with: 
+
+```bash
+git add <filename>
+```
+
+### replace local changes
+
+To replace changes in your working tree (working directory): 
+
+```bash
+$ git checkout -- <filename>
