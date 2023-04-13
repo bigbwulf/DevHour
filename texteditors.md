@@ -53,7 +53,12 @@
 * you will likely be more efficient in about ~20 hours
 * keep learning! Modern text editors are constantly being extended to be more customizable 
 
+### references 
+https://en.wikipedia.org/wiki/Editor_war#cite_note-24
 
+https://missing.csail.mit.edu/2020/editors/
+
+https://moolenaar.net/habits.html
   
   
   
